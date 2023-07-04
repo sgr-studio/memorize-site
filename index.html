@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3402/3402296.png" type="image/x-icon">
+  <title>暗記サイト</title>
+</head>
+<body>
+  <div class="main">
+    <h1>
+      <img src="https://cdn-icons-png.flaticon.com/512/3402/3402296.png" alt="icon" style="width: 40px; position: relative; top: 7px;">
+      暗記サイト
+    </h1>
+    <input type="button" value="暗記項目の設定" onclick="settings()" id="settings"><input type="button" value="暗記開始" onclick="start()" id="start"><input type="button" value="サイトのあとがき" onclick="info()">
+    <div class="screen">
+      <div id="settings_area">
+        <h2>設定</h2>
+        <div class="textbox">
+          <!-- <input type="text" id="textbox" placeholder="ここに暗記したい文字を入力" onkeydown="list_view()"> -->
+          <input type="text" id="textbox" placeholder="ここに暗記したい文字を入力" onkeydown="saveData()">
+          <!-- 送信ボタン -->
+          <!-- <div id="textBtn"><span style="position: relative; top: 5px; left: 14px; text-align: center;">>>>></span></div> -->
+        </div>
+        <p style="font-size: small;">※Enterで項目の追加、項目にカーソルを合わせるとオプションが出てくるよ</p>
+        <h3>暗記リスト<hr></h3>
+        <!-- <ul id="list">
+          <li>アイテム 1</li>
+          <li>アイテム 2</li>
+          <li>アイテム 3</li>
+          <li>アイテム 4</li>
+          <li>アイテム 5</li>
+        </ul> -->
+
+        <ul id="list">
+        </ul>
+
+        <div id="option" style="display: none;">
+          <div class="option_tool" style="width: 90%; margin: 0 auto;">
+            <button id="removeButton" style="cursor: pointer;"><span class="material-symbols-outlined" style="vertical-align: text-bottom;">delete</span>削除</button>
+            <button id="removeallButton" onclick="removeallItems()" style="cursor: pointer;"><span class="material-symbols-outlined" style="vertical-align: text-bottom;">delete</span>すべて削除</button>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- <div id="contentContainer">
+          <div id="content1" class="hidden">
+            コンテンツ 1
+          </div>
+          <div id="content2" class="hidden">
+            コンテンツ 2
+          </div>
+          <div id="content3" class="hidden">
+            コンテンツ 3
+          </div>
+          <div id="content4" class="hidden">
+            コンテンツ 4
+          </div>
+          <div id="content5" class="hidden">
+            コンテンツ 5
+          </div>
+        </div> -->
+
+      </div>
+      <div id="quiz_area">
+        <h2>暗記</h2>
+        <div id="div_start">
+          <p>始める場合、下の<b style="color: rgb(154, 36, 36); background-color: white; padding: 5px; margin: 5px;">開始</b>をクリックしてください</p>
+          <button id="start_btn" onclick="word_start()">開始</button>
+        </div>
+
+        <div id="div_quiz_screen">
+          <p id="load1">暗記リストを読み込んでいます</p>
+          <p id="load2">word_systemを読み込んでいます</p>
+          <p id="load3">設定の項目を保存しています</p>
+          <p id="load4">スクリプトを起動しています</p>
+          <p id="load5">スクリプトの動作を確認しています</p>
+          <p id="load6">すべてを読み込みました</p>
+          <div id="qs">
+            <div id="screen_quiz">
+              <div class="view_word">
+                <h2 id="question">次へを押して覚えましょう</h2>
+              </div>
+            </div>
+            <input type="button" value="次へ" onclick="viewrandom()" id="next">
+            <input type="button" value="最初から" onclick="start()" id="restart">        
+          </div>
+        </div>
+      </div>
+      <div id="menu_area">
+        <h2>ようこそ</h2>
+        <p>このサイトは暗記をするためのデジタルサイトです。<br></p>
+        <h2>使い方</h2>
+        <p>・暗記項目の設定を押して暗記するものを設定</p>
+        <p>・暗記項目の設定が終わったら暗記開始を押して確認をする</p>
+      </div>
+      <div id="info">
+        <h2>フォロー</h2>
+        <p>フォローをよろしくお願いします。<br></p>
+        <h2>作成者の紹介</h2>
+        <div style="border-radius: 5px; border-color: white; border: solid; padding: 15px; display: flex; text-align: left; overflow: hidden;">
+          <img src="SGR-icon.png" alt="SGRのアイコン" style="border-radius: 90px; margin: 3px; width: 50px; height: 50px; position: relative; top: 8px;"><div style="height: 100%; vertical-align: text-bottom; position: relative; top: 0px; left: 10px; overflow: hidden; overflow-y: hidden;"><span>どうも、SGRです。<br>作るのが好き,考えるのが好き,プログラムが好き<br>作るのが好きなやつは<a href="https://suchgamer.hatenablog.com/" target="_blank" rel="noopener noreferrer" style="color: whitesmoke;">こちら</a>へ</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
